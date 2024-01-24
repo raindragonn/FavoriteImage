@@ -2,6 +2,9 @@
 plugins {
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.android.application)
+
+    alias(libs.plugins.google.hilt)
+    kotlin("kapt")
 }
 
 android {
@@ -38,6 +41,9 @@ android {
     buildFeatures{
         viewBinding = true
     }
+    kapt {
+        correctErrorTypes = true
+    }
 }
 
 dependencies {
@@ -49,6 +55,8 @@ dependencies {
     implementation(libs.androidx.constraintlayout)
 
     implementation(libs.google.material)
+    implementation(libs.google.hilt)
+    kapt(libs.google.hilt.compiler)
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.test.ext.junit)

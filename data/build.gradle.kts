@@ -1,21 +1,18 @@
 @Suppress("DSL_SCOPE_VIOLATION") // TODO: Remove once KTIJ-19369 is fixed
 plugins {
+    alias(libs.plugins.android.library)
     alias(libs.plugins.kotlin.android)
-    alias(libs.plugins.android.application)
 }
 
 android {
-    namespace = "com.raindragonn.favoriteimage"
+    namespace = "com.raindragonn.favoriteimage.data"
     compileSdk = 33
 
     defaultConfig {
-        applicationId = "com.raindragonn.favoriteimage"
         minSdk = 26
-        targetSdk = 33
-        versionCode = 1
-        versionName = "1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles("consumer-rules.pro")
     }
 
     buildTypes {
@@ -34,19 +31,12 @@ android {
     kotlinOptions {
         jvmTarget = "1.8"
     }
-
-    buildFeatures{
-        viewBinding = true
-    }
 }
 
 dependencies {
     implementation(project(":domain"))
-    implementation(project(":data"))
-
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
-    implementation(libs.androidx.constraintlayout)
 
     implementation(libs.google.material)
 

@@ -15,4 +15,5 @@ dependencyResolutionManagement {
 
 rootProject.name = "FavoriteImage"
 include(":app")
- 
+include(":domain")
+include(":data")

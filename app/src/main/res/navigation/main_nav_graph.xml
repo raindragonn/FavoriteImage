@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main_nav_graph"
+    app:startDestination="@id/searchFragment">
+
+    <fragment
+        android:id="@+id/searchFragment"
+        android:name="com.raindragonn.favoriteimage.ui.search.SearchFragment"
+        android:label="fragment_search"
+        tools:layout="@layout/fragment_search" />
+
+    <fragment
+        android:id="@+id/detailFragment"
+        android:name="com.raindragonn.favoriteimage.ui.detail.DetailFragment"
+        android:label="fragment_detail"
+        tools:layout="@layout/fragment_detail" />
+
+    <fragment
+        android:id="@+id/likeFragment"
+        android:name="com.raindragonn.favoriteimage.ui.like.LikeFragment"
+        android:label="fragment_like"
+        tools:layout="@layout/fragment_like" />
+</navigation>

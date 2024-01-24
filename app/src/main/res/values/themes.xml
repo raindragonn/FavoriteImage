@@ -1,9 +1,11 @@
-<resources xmlns:tools="http://schemas.android.com/tools">
+<resources>
     <!-- Base application theme. -->
     <style name="Base.Theme.FavoriteImage" parent="Theme.Material3.DayNight.NoActionBar">
         <!-- Customize your light theme here. -->
-        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
-    </style>
+        <item name="android:statusBarColor">@color/base</item>
+        <item name="android:windowLightStatusBar">true</item>
 
-    <style name="Theme.FavoriteImage" parent="Base.Theme.FavoriteImage" />
+        <item name="android:textColorPrimary">@color/point</item>
+        <item name="colorPrimary">@color/primary_600</item>
+    </style>
 </resources>

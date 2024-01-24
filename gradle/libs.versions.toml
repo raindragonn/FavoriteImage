@@ -14,6 +14,11 @@ androidx-navigation = "2.6.0" #sdk 33
 google-material = "1.9.0" #sdk 33
 google-hilt = "2.46"
 
+# Etc
+retrofit2 = "2.9.0"
+retrofit2-serialization-converter = "1.0.0"
+okhttp3 = "4.12.0"
+
 #Test
 junit = "4.13.2"
 androidx-test-ext-junit = "1.1.5"
@@ -32,6 +37,11 @@ androidx-navigation-ui-ktx = { group = "androidx.navigation", name = "navigation
 google-material = { group = "com.google.android.material", name = "material", version.ref = "google-material" }
 google-hilt = { group = "com.google.dagger", name = "hilt-android", version.ref = "google-hilt" }
 google-hilt-compiler = { group = "com.google.dagger", name = "hilt-android-compiler", version.ref = "google-hilt" }
+
+retrofit2 = { group = "com.squareup.retrofit2", name = "retrofit", version.ref = "retrofit2" }
+retrofit2-serialization-converter = { group = "com.jakewharton.retrofit", name = "retrofit2-kotlinx-serialization-converter", version.ref = "retrofit2-serialization-converter" }
+okhttp3 = { group = "com.squareup.okhttp3", name = "okhttp", version.ref = "okhttp3" }
+okhttp3-logging-intercepter = { group = "com.squareup.okhttp3", name = "logging-interceptor", version.ref = "okhttp3" }
 
 junit = { group = "junit", name = "junit", version.ref = "junit" }
 androidx-test-ext-junit = { group = "androidx.test.ext", name = "junit", version.ref = "androidx-test-ext-junit" }

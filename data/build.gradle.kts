@@ -1,8 +1,16 @@
+import com.android.build.gradle.internal.cxx.configure.gradleLocalProperties
+
 @Suppress("DSL_SCOPE_VIOLATION") // TODO: Remove once KTIJ-19369 is fixed
 plugins {
-    alias(libs.plugins.android.library)
     alias(libs.plugins.kotlin.android)
+    alias(libs.plugins.kotlin.serialization)
+
+    alias(libs.plugins.android.library)
+
+    alias(libs.plugins.google.hilt)
+    kotlin("kapt")
 }
+
 
 android {
     namespace = "com.raindragonn.favoriteimage.data"
@@ -13,6 +21,10 @@ android {
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles("consumer-rules.pro")
+
+        val apiKey = gradleLocalProperties(rootDir).getProperty("UNSPLASH_API_KEY")
+
+        buildConfigField("String", "API_KEY", apiKey)
     }
 
     buildTypes {
@@ -31,14 +43,28 @@ android {
     kotlinOptions {
         jvmTarget = "1.8"
     }
+
+    buildFeatures {
+        buildConfig = true
+    }
 }
 
 dependencies {
     implementation(project(":domain"))
+
+    implementation(libs.kotlinx.serialization.json)
+
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
 
     implementation(libs.google.material)
+    implementation(libs.google.hilt)
+    kapt(libs.google.hilt.compiler)
+
+    implementation(libs.retrofit2)
+    implementation(libs.retrofit2.serialization.converter)
+    implementation(libs.okhttp3)
+    implementation(libs.okhttp3.logging.intercepter)
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.test.ext.junit)

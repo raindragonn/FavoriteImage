@@ -1,10 +1,11 @@
 @Suppress("DSL_SCOPE_VIOLATION") // TODO: Remove once KTIJ-19369 is fixed
 plugins {
     alias(libs.plugins.kotlin.android)
+
     alias(libs.plugins.android.application)
+    alias(libs.plugins.androidx.navigation.safeargs)
 
     alias(libs.plugins.google.hilt)
-
     kotlin("kapt")
 }
 
@@ -56,12 +57,14 @@ dependencies {
     implementation(libs.androidx.constraintlayout)
     implementation(libs.androidx.fragment.ktx)
 
-    implementation(libs.androidx.navigation.ui.ktx)
     implementation(libs.androidx.navigation.fragment.ktx)
+    implementation(libs.androidx.navigation.ui.ktx)
 
     implementation(libs.google.material)
     implementation(libs.google.hilt)
     kapt(libs.google.hilt.compiler)
+
+    implementation(libs.glide)
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.test.ext.junit)

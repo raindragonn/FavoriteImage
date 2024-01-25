@@ -2,6 +2,8 @@
 <resources>
     <color name="base">#FFFFFF</color>
     <color name="point">#000000</color>
+    <color name="textColor">@color/point</color>
+    <color name="textHintColor">@color/mono_300</color>
 
     <color name="mono_000">#000000</color>
     <color name="mono_100">#262626</color>

@@ -11,5 +11,7 @@ java {
 }
 
 dependencies {
+    implementation(libs.javax.inject)
+    implementation(libs.kotlinx.coroutine.core)
     implementation(libs.kotlinx.serialization.json)
 }

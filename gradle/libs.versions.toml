@@ -2,6 +2,8 @@
 agp = "8.2.2"
 kotlin = "1.9.22"
 kotlinx-json = "1.6.2"
+javax-inject = "1"
+kotlinx-coroutines-core = "1.7.3"
 
 # Androidx
 androidx-appcompat = "1.5.1" #sdk 33
@@ -25,6 +27,8 @@ androidx-test-ext-junit = "1.1.5"
 espresso-core = "3.5.1"
 
 [libraries]
+javax-inject = { group = "javax.inject", name = "javax.inject", version.ref = "javax-inject" }
+kotlinx-coroutine-core = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-core", version.ref = "kotlinx-coroutines-core" }
 kotlinx-serialization-json = { group = "org.jetbrains.kotlinx", name = "kotlinx-serialization-json", version.ref = "kotlinx-json" }
 
 androidx-appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "androidx-appcompat" }

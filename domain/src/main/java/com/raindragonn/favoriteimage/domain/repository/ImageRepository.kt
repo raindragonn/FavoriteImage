@@ -4,5 +4,5 @@ import com.raindragonn.favoriteimage.domain.entity.Image
 
 interface ImageRepository {
 
-    suspend fun searchImage(query: String, page: Int, perPage: Int): Result<List<Image>>
+    suspend fun searchImage(query: String, page: Int, perPage: Int): List<Image>
 }

@@ -8,12 +8,17 @@ import com.raindragonn.favoriteimage.domain.entity.Image
 
 class SearchViewHolder(
     private val _binding: ItemSearchBinding
-) :
-    RecyclerView.ViewHolder(_binding.root) {
+) : RecyclerView.ViewHolder(_binding.root) {
 
     fun bind(image: Image) = with(_binding) {
-        Glide.with(ivImage)
+        val requestManager = Glide.with(ivImage)
+        val thumbNailRequest = requestManager
             .load(image.thumbnailUrl)
+            .centerCrop()
+
+        requestManager
+            .load(image.originUrl)
+            .thumbnail(thumbNailRequest)
             .centerCrop()
             .into(ivImage)
 

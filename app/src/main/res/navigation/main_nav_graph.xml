@@ -24,7 +24,12 @@
         android:id="@+id/detailFragment"
         android:name="com.raindragonn.favoriteimage.ui.detail.DetailFragment"
         android:label="@string/detail_title"
-        tools:layout="@layout/fragment_detail" />
+        tools:layout="@layout/fragment_detail">
+
+        <argument
+            android:name="image"
+            app:argType="com.raindragonn.favoriteimage.domain.entity.Image" />
+    </fragment>
 
     <fragment
         android:id="@+id/likeFragment"

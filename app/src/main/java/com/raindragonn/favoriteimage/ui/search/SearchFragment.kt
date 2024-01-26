@@ -7,9 +7,11 @@ import android.view.inputmethod.EditorInfo
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import com.raindragonn.favoriteimage.R
 import com.raindragonn.favoriteimage.databinding.FragmentSearchBinding
+import com.raindragonn.favoriteimage.domain.entity.Image
 import com.raindragonn.favoriteimage.ui.search.adapter.SearchAdapter
 import com.raindragonn.favoriteimage.util.hideKeyboard
 import com.raindragonn.favoriteimage.util.viewBinding
@@ -21,7 +23,12 @@ import kotlinx.coroutines.flow.stateIn
 class SearchFragment : Fragment(R.layout.fragment_search) {
     private val _binding: FragmentSearchBinding by viewBinding(FragmentSearchBinding::bind)
     private val _vm: SearchViewModel by viewModels()
-    private val _adapter: SearchAdapter by lazy { SearchAdapter() }
+    private val _adapter: SearchAdapter by lazy {
+        SearchAdapter(
+            ::onItemClick,
+            ::onItemFavoriteClick
+        )
+    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -60,5 +67,16 @@ class SearchFragment : Fragment(R.layout.fragment_search) {
                         }
                 }
         }
+    }
+
+    private fun onItemClick(image: Image) {
+        val action = SearchFragmentDirections.actionSearchFragmentToDetailFragment(image)
+
+        findNavController()
+            .navigate(action)
+    }
+
+    private fun onItemFavoriteClick(id: String) {
+
     }
 }

@@ -6,7 +6,9 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.navArgs
 import com.bumptech.glide.Glide
+import com.bumptech.glide.load.resource.bitmap.CenterCrop
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners
+import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.bumptech.glide.request.RequestOptions
 import com.raindragonn.favoriteimage.R
 import com.raindragonn.favoriteimage.databinding.FragmentDetailBinding
@@ -33,8 +35,7 @@ class DetailFragment : Fragment(R.layout.fragment_detail) {
         val requestManager = Glide.with(requireContext())
         val requestOptions =
             RequestOptions()
-                .centerCrop()
-                .transform(RoundedCorners(24))
+                .transform(CenterCrop(), RoundedCorners(24))
 
         val thumbnailBuilder =
             requestManager
@@ -45,6 +46,7 @@ class DetailFragment : Fragment(R.layout.fragment_detail) {
             .load(_image.originUrl)
             .thumbnail(thumbnailBuilder)
             .apply(requestOptions)
+            .transition(DrawableTransitionOptions.withCrossFade())
             .into(ivImage)
 
         tvId.text = _image.id

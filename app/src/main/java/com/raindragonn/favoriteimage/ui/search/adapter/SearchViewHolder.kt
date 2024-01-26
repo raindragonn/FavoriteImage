@@ -3,6 +3,7 @@ package com.raindragonn.favoriteimage.ui.search.adapter
 import androidx.core.view.isVisible
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.raindragonn.favoriteimage.databinding.ItemSearchBinding
 import com.raindragonn.favoriteimage.domain.entity.Image
 
@@ -20,6 +21,7 @@ class SearchViewHolder(
             .load(image.originUrl)
             .thumbnail(thumbNailRequest)
             .centerCrop()
+            .transition(DrawableTransitionOptions.withCrossFade())
             .into(ivImage)
 
         ivFavorite.isVisible = image.isLike

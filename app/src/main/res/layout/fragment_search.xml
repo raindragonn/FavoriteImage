@@ -33,7 +33,8 @@
         app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@id/et_search"
-        tools:itemCount="3"
+        app:spanCount="4"
+        tools:itemCount="20"
         tools:listitem="@layout/item_search" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

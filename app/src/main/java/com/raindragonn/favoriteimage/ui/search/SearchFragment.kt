@@ -8,7 +8,6 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.navigation.fragment.findNavController
-import androidx.recyclerview.widget.GridLayoutManager
 import com.raindragonn.favoriteimage.R
 import com.raindragonn.favoriteimage.databinding.FragmentSearchBinding
 import com.raindragonn.favoriteimage.domain.entity.Image
@@ -51,8 +50,6 @@ class SearchFragment : Fragment(R.layout.fragment_search) {
             }
             return@setOnEditorActionListener result
         }
-
-        rvSearch.layoutManager = GridLayoutManager(requireContext(), 3)
         rvSearch.adapter = _adapter
     }
 

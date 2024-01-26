@@ -24,7 +24,8 @@ class ImageRepositoryImpl @Inject constructor(
                         originUrl = response.urls.full,
                         author = response.user.username,
                         width = response.width,
-                        height = response.height
+                        height = response.height,
+                        createdAt = response.createdAt
                     )
                 }
         }

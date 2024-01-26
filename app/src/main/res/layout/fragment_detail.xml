@@ -6,13 +6,152 @@
     android:layout_height="match_parent"
     tools:context=".ui.detail.DetailFragment">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Detail"
-        app:layout_constraintBottom_toBottomOf="parent"
+    <ImageView
+        android:id="@+id/iv_image"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_margin="@dimen/base_spacing_3"
+        android:contentDescription="@null"
+        app:layout_constraintDimensionRatio="1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:src="@mipmap/ic_launcher" />
 
+    <LinearLayout
+        android:id="@+id/ll_info_container"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/base_spacing_3"
+        android:background="@drawable/shape_detail_info_background"
+        android:divider="@drawable/shape_detail_info_divider"
+        android:orientation="vertical"
+        android:showDividers="middle"
+        app:layout_constraintEnd_toEndOf="@id/iv_image"
+        app:layout_constraintStart_toStartOf="@id/iv_image"
+        app:layout_constraintTop_toBottomOf="@id/iv_image">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/tv_id_guide"
+                style="@style/TextAppearance.AppCompat.Body2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingHorizontal="@dimen/base_spacing_2"
+                android:paddingVertical="@dimen/base_spacing_1"
+                android:text="@string/id_guide" />
+
+            <TextView
+                android:id="@+id/tv_id"
+                style="@style/TextAppearance.AppCompat.Body1"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="end"
+                android:paddingHorizontal="@dimen/base_spacing_2"
+                android:paddingVertical="@dimen/base_spacing_1"
+                android:textColor="@color/subTextColor"
+                tools:text="@tools:sample/lorem" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/tv_author_guide"
+                style="@style/TextAppearance.AppCompat.Body2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingHorizontal="@dimen/base_spacing_2"
+                android:paddingVertical="@dimen/base_spacing_1"
+                android:text="@string/author_guide" />
+
+            <TextView
+                android:id="@+id/tv_author"
+                style="@style/TextAppearance.AppCompat.Body1"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="end"
+                android:paddingHorizontal="@dimen/base_spacing_2"
+                android:paddingVertical="@dimen/base_spacing_1"
+                android:textColor="@color/subTextColor"
+                tools:text="@tools:sample/lorem" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/tv_size_guide"
+                style="@style/TextAppearance.AppCompat.Body2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingHorizontal="@dimen/base_spacing_2"
+                android:paddingVertical="@dimen/base_spacing_1"
+                android:text="@string/size_guide" />
+
+            <TextView
+                android:id="@+id/tv_size"
+                style="@style/TextAppearance.AppCompat.Body1"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="end"
+                android:paddingHorizontal="@dimen/base_spacing_2"
+                android:paddingVertical="@dimen/base_spacing_1"
+                android:textColor="@color/subTextColor"
+                tools:text="@tools:sample/lorem" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/tv_created_at_guide"
+                style="@style/TextAppearance.AppCompat.Body2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingHorizontal="@dimen/base_spacing_2"
+                android:paddingVertical="@dimen/base_spacing_1"
+                android:text="@string/created_at_guide" />
+
+            <TextView
+                android:id="@+id/tv_created_at"
+                style="@style/TextAppearance.AppCompat.Body1"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="end"
+                android:paddingHorizontal="@dimen/base_spacing_2"
+                android:paddingVertical="@dimen/base_spacing_1"
+                android:textColor="@color/subTextColor"
+                tools:text="@tools:sample/lorem" />
+
+        </LinearLayout>
+    </LinearLayout>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fab_like"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:contentDescription="@null"
+        android:src="@drawable/ic_heart_bolder"
+        app:backgroundTint="@color/base"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.9"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.9"
+        app:maxImageSize="@dimen/base_spacing_4"
+        app:rippleColor="@color/primary_300"
+        app:shapeAppearanceOverlay="@style/rounded_floating_action_button"
+        app:tint="@null" />
 </androidx.constraintlayout.widget.ConstraintLayout>

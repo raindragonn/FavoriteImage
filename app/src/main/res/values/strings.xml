@@ -3,4 +3,8 @@
     <string name="search_title">Search</string>
     <string name="detail_title">Detail</string>
     <string name="like_title">Like</string>
+    <string name="id_guide">ID</string>
+    <string name="author_guide">Author</string>
+    <string name="size_guide">Size</string>
+    <string name="created_at_guide">Created At</string>
 </resources>

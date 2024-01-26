@@ -1,4 +1,4 @@
-package com.raindragonn.favoriteimage.ui.search.adapter
+package com.raindragonn.favoriteimage.ui.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -8,29 +8,23 @@ import com.raindragonn.favoriteimage.databinding.ItemSearchBinding
 import com.raindragonn.favoriteimage.domain.entity.Image
 import com.raindragonn.favoriteimage.util.ext.checkNoPosition
 
-class SearchAdapter(
+class ImageAdapter(
     private val _onClickImage: (image: Image) -> Unit,
-    private val _onClickFavorite: (id: String) -> Unit,
-) : ListAdapter<Image, SearchViewHolder>(_differ) {
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SearchViewHolder {
+) : ListAdapter<Image, ImageViewHolder>(_differ) {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ImageViewHolder {
         val binding: ItemSearchBinding =
             ItemSearchBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-        return SearchViewHolder(binding)
+        return ImageViewHolder(binding)
             .apply {
                 binding.root.setOnClickListener {
                     checkNoPosition { position ->
                         _onClickImage(getItem(position))
                     }
                 }
-                binding.ivFavorite.setOnClickListener {
-                    checkNoPosition { position ->
-                        _onClickFavorite(getItem(position).id)
-                    }
-                }
             }
     }
 
-    override fun onBindViewHolder(holder: SearchViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: ImageViewHolder, position: Int) {
         holder.bind(getItem(position))
     }
 
@@ -46,7 +40,7 @@ class SearchAdapter(
                         && oldItem.author == newItem.author
                         && oldItem.width == newItem.width
                         && oldItem.height == newItem.height
-                        && oldItem.isLike == newItem.isLike
+                        && oldItem.liked == newItem.liked
             }
         }
 

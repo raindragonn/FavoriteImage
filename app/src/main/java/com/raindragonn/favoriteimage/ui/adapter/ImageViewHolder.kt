@@ -1,4 +1,4 @@
-package com.raindragonn.favoriteimage.ui.search.adapter
+package com.raindragonn.favoriteimage.ui.adapter
 
 import androidx.core.view.isVisible
 import androidx.recyclerview.widget.RecyclerView
@@ -7,7 +7,7 @@ import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.raindragonn.favoriteimage.databinding.ItemSearchBinding
 import com.raindragonn.favoriteimage.domain.entity.Image
 
-class SearchViewHolder(
+class ImageViewHolder(
     private val _binding: ItemSearchBinding
 ) : RecyclerView.ViewHolder(_binding.root) {
 
@@ -24,6 +24,6 @@ class SearchViewHolder(
             .transition(DrawableTransitionOptions.withCrossFade())
             .into(ivImage)
 
-        ivFavorite.isVisible = image.isLike
+        ivFavorite.isVisible = image.liked
     }
 }

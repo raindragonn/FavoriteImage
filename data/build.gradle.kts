@@ -7,6 +7,7 @@ plugins {
 
     alias(libs.plugins.android.library)
 
+    alias(libs.plugins.google.ksp)
     alias(libs.plugins.google.hilt)
     kotlin("kapt")
 }
@@ -56,6 +57,10 @@ dependencies {
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
+
+    implementation(libs.androidx.room)
+    implementation(libs.androidx.room.ktx)
+    ksp(libs.androidx.room.compiler)
 
     implementation(libs.google.material)
     implementation(libs.google.hilt)

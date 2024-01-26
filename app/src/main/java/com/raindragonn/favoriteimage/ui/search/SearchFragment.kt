@@ -16,7 +16,7 @@ import androidx.navigation.fragment.findNavController
 import com.raindragonn.favoriteimage.R
 import com.raindragonn.favoriteimage.databinding.FragmentSearchBinding
 import com.raindragonn.favoriteimage.domain.entity.Image
-import com.raindragonn.favoriteimage.ui.search.adapter.SearchAdapter
+import com.raindragonn.favoriteimage.ui.adapter.ImageAdapter
 import com.raindragonn.favoriteimage.util.ext.hideKeyboard
 import com.raindragonn.favoriteimage.util.ext.viewRepeatOnLifeCycle
 import com.raindragonn.favoriteimage.util.viewBinding
@@ -27,12 +27,7 @@ import kotlinx.coroutines.flow.stateIn
 class SearchFragment : Fragment(R.layout.fragment_search), MenuProvider {
     private val _binding: FragmentSearchBinding by viewBinding(FragmentSearchBinding::bind)
     private val _vm: SearchViewModel by viewModels()
-    private val _adapter: SearchAdapter by lazy {
-        SearchAdapter(
-            ::onItemClick,
-            ::onItemFavoriteClick
-        )
-    }
+    private val _adapter: ImageAdapter by lazy { ImageAdapter(::onItemClick) }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -100,9 +95,5 @@ class SearchFragment : Fragment(R.layout.fragment_search), MenuProvider {
 
         findNavController()
             .navigate(action)
-    }
-
-    private fun onItemFavoriteClick(id: String) {
-
     }
 }

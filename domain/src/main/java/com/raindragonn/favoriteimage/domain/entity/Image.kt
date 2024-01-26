@@ -13,7 +13,7 @@ data class Image(
     val width: Int,
     val height: Int,
     val createdAt: String,
-    val isLike: Boolean = false,
+    val liked: Boolean = false,
 ) : java.io.Serializable {
     val size: String
         get() = "$width x $height"

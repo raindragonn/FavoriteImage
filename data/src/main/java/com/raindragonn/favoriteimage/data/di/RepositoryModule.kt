@@ -1,5 +1,6 @@
 package com.raindragonn.favoriteimage.data.di
 
+import com.raindragonn.favoriteimage.data.database.dao.ImageDao
 import com.raindragonn.favoriteimage.data.remote.api.SearchApi
 import com.raindragonn.favoriteimage.data.repository.ImageRepositoryImpl
 import com.raindragonn.favoriteimage.domain.di.IoDispatcher
@@ -20,11 +21,13 @@ object RepositoryModule {
     fun providesImageRepository(
         @IoDispatcher
         dispatcher: CoroutineDispatcher,
-        api: SearchApi
+        api: SearchApi,
+        dao: ImageDao,
     ): ImageRepository {
         return ImageRepositoryImpl(
             dispatcher,
-            api
+            api,
+            dao
         )
     }
 }

@@ -20,7 +20,7 @@
         android:inputType="text"
         android:maxLines="1"
         android:paddingHorizontal="@dimen/base_spacing_1"
-        android:paddingVertical="@dimen/base_spacing_2"
+        android:paddingVertical="@dimen/base_spacing_1.5"
         app:layout_constraintBottom_toTopOf="@id/rv_search"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

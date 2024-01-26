@@ -1,4 +1,4 @@
-package com.raindragonn.favoriteimage.util
+package com.raindragonn.favoriteimage.util.ext
 
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Lifecycle

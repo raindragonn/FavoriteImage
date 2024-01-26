@@ -6,7 +6,7 @@ import androidx.recyclerview.widget.DiffUtil.ItemCallback
 import androidx.recyclerview.widget.ListAdapter
 import com.raindragonn.favoriteimage.databinding.ItemSearchBinding
 import com.raindragonn.favoriteimage.domain.entity.Image
-import com.raindragonn.favoriteimage.util.checkNoPosition
+import com.raindragonn.favoriteimage.util.ext.checkNoPosition
 
 class SearchAdapter(
     private val _onClickImage: (image: Image) -> Unit,

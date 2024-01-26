@@ -1,4 +1,4 @@
-package com.raindragonn.favoriteimage.util
+package com.raindragonn.favoriteimage.util.ext
 
 import android.content.Context
 import android.view.View

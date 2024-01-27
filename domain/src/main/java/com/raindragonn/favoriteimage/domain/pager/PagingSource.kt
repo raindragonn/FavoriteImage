@@ -1,6 +1,5 @@
 package com.raindragonn.favoriteimage.domain.pager
 
-import com.sun.jdi.Value
 
 abstract class PagingSource<Key : Any, Value : Any> {
 

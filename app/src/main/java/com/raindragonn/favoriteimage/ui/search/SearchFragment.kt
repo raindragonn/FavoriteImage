@@ -7,7 +7,9 @@ import android.view.MenuInflater
 import android.view.MenuItem
 import android.view.View
 import android.view.inputmethod.EditorInfo
+import android.widget.Toast
 import androidx.core.view.MenuProvider
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
@@ -16,18 +18,29 @@ import androidx.navigation.fragment.findNavController
 import com.raindragonn.favoriteimage.R
 import com.raindragonn.favoriteimage.databinding.FragmentSearchBinding
 import com.raindragonn.favoriteimage.domain.entity.Image
-import com.raindragonn.favoriteimage.ui.adapter.ImageAdapter
+import com.raindragonn.favoriteimage.domain.pager.LoadState
+import com.raindragonn.favoriteimage.domain.util.ListEmptyException
+import com.raindragonn.favoriteimage.domain.util.OverPageException
+import com.raindragonn.favoriteimage.ui.adapter.ImagePagerAdapter
+import com.raindragonn.favoriteimage.ui.adapter.decoration.GridSpacingItemDecoration
+import com.raindragonn.favoriteimage.util.ext.dpToRoundedPx
 import com.raindragonn.favoriteimage.util.ext.hideKeyboard
+import com.raindragonn.favoriteimage.util.ext.viewLifeCycleScope
 import com.raindragonn.favoriteimage.util.ext.viewRepeatOnLifeCycle
 import com.raindragonn.favoriteimage.util.viewBinding
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.stateIn
+import kotlinx.coroutines.launch
+import java.io.IOException
 
 @AndroidEntryPoint
 class SearchFragment : Fragment(R.layout.fragment_search), MenuProvider {
     private val _binding: FragmentSearchBinding by viewBinding(FragmentSearchBinding::bind)
     private val _vm: SearchViewModel by viewModels()
-    private val _adapter: ImageAdapter by lazy { ImageAdapter(::onItemClick) }
+    private var _adapter: ImagePagerAdapter? = null
+
+    private val _searchText: String
+        get() = _binding.etSearch.text.toString()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -69,26 +82,63 @@ class SearchFragment : Fragment(R.layout.fragment_search), MenuProvider {
             val result = (actionId == EditorInfo.IME_ACTION_SEARCH)
                     || (event.action == KeyEvent.ACTION_DOWN && event.keyCode == KeyEvent.KEYCODE_ENTER)
             if (result) {
-                _vm.search(v.text.toString())
+                search()
                 v.hideKeyboard()
             }
             return@setOnEditorActionListener result
         }
+        rvSearch.addItemDecoration(GridSpacingItemDecoration(4, 2f.dpToRoundedPx()))
         rvSearch.adapter = _adapter
     }
 
     private fun observing() = with(_vm) {
         viewRepeatOnLifeCycle(Lifecycle.State.STARTED) {
-            imageListState
-                .stateIn(this)
-                .collect { result ->
-                    result
-                        .onSuccess {
-                            _adapter.submitList(it)
-                        }
-                }
+            launch {
+                imageListStateFlow
+                    .stateIn(this)
+                    .collect {
+                        _adapter?.submitList(it)
+                    }
+            }
+            launch {
+                loadStateFlow
+                    .stateIn(this)
+                    .collect(::onChangeLoadState)
+            }
         }
     }
+
+    private fun search() = with(_vm) {
+        val pager = getImagePager(_searchText)
+        _binding.rvSearch.adapter = ImagePagerAdapter(pager, ::onItemClick).also {
+            _adapter = it
+        }
+
+        viewLifeCycleScope.launch {
+            setLoadStateFlow(pager.loadStateFlow)
+            setSearchImageFlow(pager.flow)
+        }
+    }
+
+    private fun onChangeLoadState(loadState: LoadState) {
+        _binding.tvSearchGuide.isVisible = false
+        _binding.pbLoading.isVisible = loadState is LoadState.Loading
+
+        if (loadState is LoadState.Error) {
+            val messageId = when (loadState.throwable) {
+                is OverPageException -> return
+                is ListEmptyException -> {
+                    _binding.tvSearchGuide.isVisible = true
+                    return
+                }
+
+                is IOException -> R.string.internet_error_message
+                else -> R.string.default_error_message
+            }
+            Toast.makeText(requireContext(), messageId, Toast.LENGTH_SHORT).show()
+        }
+    }
+
 
     private fun onItemClick(image: Image) {
         val action = SearchFragmentDirections.actionSearchFragmentToDetailFragment(image)

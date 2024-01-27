@@ -3,17 +3,20 @@ package com.raindragonn.favoriteimage.ui.adapter
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil.ItemCallback
-import androidx.recyclerview.widget.ListAdapter
-import com.raindragonn.favoriteimage.databinding.ItemSearchBinding
+import com.raindragonn.favoriteimage.databinding.ItemImageBinding
 import com.raindragonn.favoriteimage.domain.entity.Image
+import com.raindragonn.favoriteimage.domain.pager.PagingBindListener
+import com.raindragonn.favoriteimage.pager.PagerListAdapter
 import com.raindragonn.favoriteimage.util.ext.checkNoPosition
 
-class ImageAdapter(
+class ImagePagerAdapter(
+    pagingBindListener: PagingBindListener,
     private val _onClickImage: (image: Image) -> Unit,
-) : ListAdapter<Image, ImageViewHolder>(_differ) {
+) : PagerListAdapter<Image, ImageViewHolder>(pagingBindListener, _differ) {
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ImageViewHolder {
-        val binding: ItemSearchBinding =
-            ItemSearchBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        val binding: ItemImageBinding =
+            ItemImageBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return ImageViewHolder(binding)
             .apply {
                 binding.root.setOnClickListener {
@@ -24,8 +27,8 @@ class ImageAdapter(
             }
     }
 
-    override fun onBindViewHolder(holder: ImageViewHolder, position: Int) {
-        holder.bind(getItem(position))
+    override fun onBindViewHolder(holder: ImageViewHolder, item: Image) {
+        holder.bind(item)
     }
 
     companion object {

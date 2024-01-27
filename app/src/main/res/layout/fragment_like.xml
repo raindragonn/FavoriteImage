@@ -13,6 +13,6 @@
         app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
         app:spanCount="4"
         tools:itemCount="20"
-        tools:listitem="@layout/item_search" />
+        tools:listitem="@layout/item_image" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

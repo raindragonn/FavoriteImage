@@ -24,7 +24,8 @@
         app:layout_constraintBottom_toTopOf="@id/rv_search"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_search"
@@ -35,6 +36,29 @@
         app:layout_constraintTop_toBottomOf="@id/et_search"
         app:spanCount="4"
         tools:itemCount="20"
-        tools:listitem="@layout/item_search" />
+        tools:listitem="@layout/item_image" />
+
+    <TextView
+        android:id="@+id/tv_search_guide"
+        style="@style/TextAppearance.AppCompat.Display1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/search_result_empty"
+        android:textColor="@color/textColor"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ProgressBar
+        android:id="@+id/pb_loading"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

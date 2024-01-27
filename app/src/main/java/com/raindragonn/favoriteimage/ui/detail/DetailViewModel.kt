@@ -17,10 +17,11 @@ class DetailViewModel @Inject constructor(
     private val _savedStateHandle: SavedStateHandle,
     private val _changeImageLikedState: ChangeImageLikedState,
 ) : ViewModel() {
-    private fun getImageFromSavedState() =
-        DetailFragmentArgs.fromSavedStateHandle(_savedStateHandle).image
 
-    private val _imageState: MutableStateFlow<Image> = MutableStateFlow(getImageFromSavedState())
+    private val imageFromSavedState: Image
+        get() = DetailFragmentArgs.fromSavedStateHandle(_savedStateHandle).image
+
+    private val _imageState: MutableStateFlow<Image> = MutableStateFlow(imageFromSavedState)
     val imageState: StateFlow<Image>
         get() = _imageState.asStateFlow()
 

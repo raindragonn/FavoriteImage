@@ -7,7 +7,7 @@ class ChangeImageLikedState @Inject constructor(
     private val _removeLikeImage: RemoveLikedImage,
     private val _saveLikeImage: SaveLikedImage,
 ) {
-    suspend operator fun invoke(image: Image) =
+    suspend operator fun invoke(image: Image): Result<Image> =
         runCatching {
             if (image.liked) {
                 _removeLikeImage(image)

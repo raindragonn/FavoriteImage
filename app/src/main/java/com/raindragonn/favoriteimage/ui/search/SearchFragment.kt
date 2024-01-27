@@ -23,7 +23,6 @@ import com.raindragonn.favoriteimage.domain.util.ListEmptyException
 import com.raindragonn.favoriteimage.domain.util.OverPageException
 import com.raindragonn.favoriteimage.ui.adapter.ImagePagerAdapter
 import com.raindragonn.favoriteimage.ui.adapter.decoration.GridSpacingItemDecoration
-import com.raindragonn.favoriteimage.util.ext.dpToRoundedPx
 import com.raindragonn.favoriteimage.util.ext.hideKeyboard
 import com.raindragonn.favoriteimage.util.ext.viewLifeCycleScope
 import com.raindragonn.favoriteimage.util.ext.viewRepeatOnLifeCycle
@@ -87,7 +86,7 @@ class SearchFragment : Fragment(R.layout.fragment_search), MenuProvider {
             }
             return@setOnEditorActionListener result
         }
-        rvSearch.addItemDecoration(GridSpacingItemDecoration(4, 2f.dpToRoundedPx()))
+        rvSearch.addItemDecoration(GridSpacingItemDecoration())
         rvSearch.adapter = _adapter
     }
 

@@ -10,6 +10,7 @@ import com.raindragonn.favoriteimage.R
 import com.raindragonn.favoriteimage.databinding.FragmentLikeBinding
 import com.raindragonn.favoriteimage.domain.entity.Image
 import com.raindragonn.favoriteimage.ui.adapter.LikedImageAdapter
+import com.raindragonn.favoriteimage.ui.adapter.decoration.GridSpacingItemDecoration
 import com.raindragonn.favoriteimage.util.ext.viewRepeatOnLifeCycle
 import com.raindragonn.favoriteimage.util.viewBinding
 import dagger.hilt.android.AndroidEntryPoint
@@ -30,6 +31,7 @@ class LikeFragment : Fragment(R.layout.fragment_like) {
     }
 
     private fun initViews() = with(_binding) {
+        rvLike.addItemDecoration(GridSpacingItemDecoration())
         rvLike.adapter = _adapter
     }
 

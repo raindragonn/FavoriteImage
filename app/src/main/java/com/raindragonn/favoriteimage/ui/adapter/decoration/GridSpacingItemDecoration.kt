@@ -3,14 +3,15 @@ package com.raindragonn.favoriteimage.ui.adapter.decoration
 import android.graphics.Rect
 import android.view.View
 import androidx.recyclerview.widget.RecyclerView
+import com.raindragonn.favoriteimage.util.ext.dpToRoundedPx
 
 /**
  * https://stackoverflow.com/a/30701422
  */
 
 internal class GridSpacingItemDecoration(
-    private val spanCount: Int,
-    private val spacing: Int,
+    private val spanCount: Int = DEFAULT_SPAN_COUNT,
+    private val spacing: Int = DEFAULT_SPACING,
 ) : RecyclerView.ItemDecoration() {
 
     override fun getItemOffsets(
@@ -31,5 +32,10 @@ internal class GridSpacingItemDecoration(
                 outRect.top = spacing
             }
         }
+    }
+
+    companion object {
+        private const val DEFAULT_SPAN_COUNT = 4
+        private val DEFAULT_SPACING = 2f.dpToRoundedPx()
     }
 }   

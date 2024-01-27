@@ -25,9 +25,10 @@ class ImageRepositoryImpl @Inject constructor(
         withContext(_dispatcher) {
             val response = _api.getSongList(query, page, perPage)
 
-            if (response.results.isEmpty()) throw ListEmptyException
             if (response.total > 0 && response.totalPages < page) {
                 throw OverPageException(response.totalPages, page)
+            } else if (response.results.isEmpty()) {
+                throw ListEmptyException
             }
 
             response

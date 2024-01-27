@@ -1,4 +1,4 @@
-package com.raindragonn.favoriteimage.util
+package com.raindragonn.favoriteimage.util.view
 
 import android.view.LayoutInflater
 import android.view.View

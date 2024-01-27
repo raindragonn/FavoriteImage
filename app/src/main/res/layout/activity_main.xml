@@ -40,4 +40,22 @@
         app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior"
         app:navGraph="@navigation/main_nav_graph" />
 
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fab_scroll"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/base_spacing_2"
+        android:layout_marginBottom="@dimen/base_spacing_2"
+        android:contentDescription="@null"
+        android:src="@drawable/ic_arrow_top"
+        android:visibility="invisible"
+        app:backgroundTint="@color/primary_600"
+        app:layout_anchor="@id/nav_host_fragment"
+        app:layout_anchorGravity="bottom|right|end"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:maxImageSize="@dimen/base_spacing_4"
+        app:rippleColor="@color/primary_300"
+        app:shapeAppearanceOverlay="@style/rounded_floating_action_button"
+        app:tint="@null" />
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

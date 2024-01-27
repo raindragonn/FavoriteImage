@@ -15,7 +15,7 @@ import com.raindragonn.favoriteimage.R
 import com.raindragonn.favoriteimage.databinding.FragmentDetailBinding
 import com.raindragonn.favoriteimage.domain.entity.Image
 import com.raindragonn.favoriteimage.util.ext.viewRepeatOnLifeCycle
-import com.raindragonn.favoriteimage.util.viewBinding
+import com.raindragonn.favoriteimage.util.view.viewBinding
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.stateIn
 

@@ -7,7 +7,7 @@ import kotlinx.serialization.Serializable
 @Serializable
 data class SearchResponse(
     @SerialName("results")
-    val results: List<ResultResponse>,
+    val results: List<ImageResponse>,
     @SerialName("total")
     val total: Int,
     @SerialName("total_pages")

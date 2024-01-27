@@ -5,7 +5,7 @@ import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class ResultResponse(
+data class ImageResponse(
     @SerialName("id")
     val id: String,
     @SerialName("height")

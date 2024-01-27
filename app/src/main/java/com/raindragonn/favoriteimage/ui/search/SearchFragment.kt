@@ -30,7 +30,7 @@ import com.raindragonn.favoriteimage.ui.main.MainActivity
 import com.raindragonn.favoriteimage.util.ext.hideKeyboard
 import com.raindragonn.favoriteimage.util.ext.viewLifeCycleScope
 import com.raindragonn.favoriteimage.util.ext.viewRepeatOnLifeCycle
-import com.raindragonn.favoriteimage.util.view.FabVisibleListener
+import com.raindragonn.favoriteimage.util.view.FabVisibleChangeListener
 import com.raindragonn.favoriteimage.util.view.viewBinding
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.stateIn
@@ -48,9 +48,9 @@ class SearchFragment : Fragment(R.layout.fragment_search), MenuProvider {
                 (_binding.rvSearch.layoutManager as? GridLayoutManager)?.findFirstCompletelyVisibleItemPosition()
                     ?: return
             if (position == 0) {
-                _fabVisibleListener?.hide()
+                _fabVisibleChangeListener?.hideFab()
             } else {
-                _fabVisibleListener?.show()
+                _fabVisibleChangeListener?.showFab()
             }
         }
     }
@@ -58,8 +58,8 @@ class SearchFragment : Fragment(R.layout.fragment_search), MenuProvider {
     private val _searchText: String
         get() = _binding.etSearch.text.toString()
 
-    private val _fabVisibleListener: FabVisibleListener?
-        get() = requireActivity() as? FabVisibleListener
+    private val _fabVisibleChangeListener: FabVisibleChangeListener?
+        get() = requireActivity() as? FabVisibleChangeListener
 
     private var _adapter: ImagePagerAdapter? = null
 

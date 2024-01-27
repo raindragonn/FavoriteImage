@@ -16,7 +16,7 @@ import com.raindragonn.favoriteimage.ui.adapter.LikedImageAdapter
 import com.raindragonn.favoriteimage.ui.adapter.decoration.GridSpacingItemDecoration
 import com.raindragonn.favoriteimage.ui.main.MainActivity
 import com.raindragonn.favoriteimage.util.ext.viewRepeatOnLifeCycle
-import com.raindragonn.favoriteimage.util.view.FabVisibleListener
+import com.raindragonn.favoriteimage.util.view.FabVisibleChangeListener
 import com.raindragonn.favoriteimage.util.view.viewBinding
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.stateIn
@@ -33,15 +33,15 @@ class LikeFragment : Fragment(R.layout.fragment_like) {
                 (_binding.rvLike.layoutManager as? GridLayoutManager)?.findFirstCompletelyVisibleItemPosition()
                     ?: return
             if (position == 0) {
-                _fabVisibleListener?.hide()
+                _fabVisibleChangeListener?.hideFab()
             } else {
-                _fabVisibleListener?.show()
+                _fabVisibleChangeListener?.showFab()
             }
         }
     }
 
-    private val _fabVisibleListener: FabVisibleListener?
-        get() = requireActivity() as? FabVisibleListener
+    private val _fabVisibleChangeListener: FabVisibleChangeListener?
+        get() = requireActivity() as? FabVisibleChangeListener
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)

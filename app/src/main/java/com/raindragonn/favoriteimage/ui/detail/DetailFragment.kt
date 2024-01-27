@@ -1,5 +1,6 @@
 package com.raindragonn.favoriteimage.ui.detail
 
+import android.content.Context
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
@@ -15,6 +16,7 @@ import com.raindragonn.favoriteimage.R
 import com.raindragonn.favoriteimage.databinding.FragmentDetailBinding
 import com.raindragonn.favoriteimage.domain.entity.Image
 import com.raindragonn.favoriteimage.util.ext.viewRepeatOnLifeCycle
+import com.raindragonn.favoriteimage.util.view.FabVisibleChangeListener
 import com.raindragonn.favoriteimage.util.view.viewBinding
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.stateIn
@@ -27,6 +29,11 @@ class DetailFragment : Fragment(R.layout.fragment_detail) {
 
     private val _image: Image
         get() = _nav.image
+
+    override fun onAttach(context: Context) {
+        (context as FabVisibleChangeListener).invisibleFab()
+        super.onAttach(context)
+    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)

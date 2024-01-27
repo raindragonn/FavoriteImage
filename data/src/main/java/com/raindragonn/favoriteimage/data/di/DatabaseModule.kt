@@ -24,7 +24,7 @@ object DatabaseModule {
 
     @Provides
     @Singleton
-    fun providesAlarmDao(
+    fun providesImageDao(
         database: ImageDatabase
     ): ImageDao {
         return database.getImageDao()

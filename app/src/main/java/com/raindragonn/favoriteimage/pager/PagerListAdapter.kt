@@ -10,7 +10,7 @@ abstract class PagerListAdapter<T, VH : RecyclerView.ViewHolder>(
     diffCallBack: DiffUtil.ItemCallback<T>
 ) : ListAdapter<T, VH>(diffCallBack) {
     init {
-        _pagingBindListener.bindListener(0, 0)
+        _pagingBindListener.bindListener()
     }
 
     override fun onBindViewHolder(holder: VH, position: Int) {

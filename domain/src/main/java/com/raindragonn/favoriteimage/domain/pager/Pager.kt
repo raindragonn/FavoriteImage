@@ -9,9 +9,14 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 
+/**
+ *
+ * @param Key [PagingSource]에서 추가 데이터를 로드하기 위해 사용하는 페이지 쿼리 유형
+ * @param Value 페이저를 통해 가져올 데이터 타입*
+ */
 class Pager<Key : Any, Value : Any>(
     initialKey: Key? = null,
-    private val _pagerConfig: PagingConfig,
+    private val _pagingConfig: PagingConfig,
     private val _pagingSource: PagingSource<Key, Value>,
     private val _coroutineScope: CoroutineScope
 ) : PagingBindListener {
@@ -29,11 +34,12 @@ class Pager<Key : Any, Value : Any>(
     override fun bindListener(listSize: Int, currentBindPosition: Int) {
         _coroutineScope.launch {
 
-            val loadState = _loadStateFlow.value
+            val loadState: LoadState = _loadStateFlow.value
             if (loadState != LoadState.NotLoading) return@launch
 
-            val checkBindPosition = currentBindPosition >= listSize - _pagerConfig.loadDistance
-            val checkInitLoadSize = listSize < _pagerConfig.initialLoadSize
+            val checkBindPosition: Boolean =
+                currentBindPosition >= listSize - _pagingConfig.loadDistance
+            val checkInitLoadSize: Boolean = listSize < _pagingConfig.initialLoadSize
             if (checkInitLoadSize || checkBindPosition) {
                 loadPage()
             }
@@ -42,12 +48,12 @@ class Pager<Key : Any, Value : Any>(
 
     private suspend fun loadPage() {
         _loadStateFlow.emit(LoadState.Loading)
-        val pagerSize = _pagerConfig.pagerSize
-        val result =
+        val pagerSize: Int = _pagingConfig.pagerSize
+        val result: PagingSource.LoadResult<Key, Value> =
             _pagingSource.load(PagingSource.LoadParam(_lastKey, pagerSize))
         when (result) {
             is PagingSource.LoadResult.Success -> {
-                val currentList = _flow.value + result.data
+                val currentList: List<Value> = _flow.value + result.data
                 _flow.emit(currentList)
                 _lastKey = result.nextKey
                 _loadStateFlow.emit(LoadState.NotLoading)

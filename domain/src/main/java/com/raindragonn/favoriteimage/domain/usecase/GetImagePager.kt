@@ -18,7 +18,7 @@ class GetImagePager @Inject constructor(
         initialKey = ImagePagingKey(
             query = query
         ),
-        _pagerConfig = PagingConfig(
+        _pagingConfig = PagingConfig(
             pagerSize = LOAD_PAGE_SIZE,
             loadDistance = LOAD_DISTANCE,
         ),
